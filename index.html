@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Anshiii 💗</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, #ffd6e7 0%, transparent 30%),
+        radial-gradient(circle at 80% 80%, #ffc0d8 0%, transparent 30%),
+        linear-gradient(135deg, #fff0f6, #ffd4e5, #ffeaf3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    color: #8b3155;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    color: #ff7fa9;
+    font-size: 22px;
+    animation: float 7s linear infinite;
+    opacity: .7;
+    z-index: 0;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+    15% { opacity: .8; }
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main card */
+.container {
+    width: 92%;
+    max-width: 440px;
+    min-height: 650px;
+    padding: 28px 22px;
+    background: rgba(255,255,255,.45);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 35px;
+    box-shadow: 0 20px 60px rgba(180,70,110,.18);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.small {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #b85a7b;
+    margin-bottom: 7px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: 42px;
+    color: #9d3159;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #a94b70;
+    margin-bottom: 25px;
+}
+
+/* Photo */
+.photo-frame {
+    width: 145px;
+    height: 145px;
+    margin: auto;
+    padding: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff7da8, #fff);
+    box-shadow: 0 8px 30px rgba(190,70,110,.25);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Envelope */
+.envelope-area {
+    margin: 35px auto 20px;
+    width: 230px;
+    height: 150px;
+    position: relative;
+    cursor: pointer;
+    perspective: 900px;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #ff9fc1;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(160,50,90,.2);
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #ffb4ce;
+    clip-path: polygon(0 0, 50% 55%, 100% 0);
+    z-index: 3;
+    transform-origin: top;
+    transition: .8s;
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 115px solid #ff8fb5;
+    border-top: 75px solid transparent;
+    border-bottom: 75px solid transparent;
+    z-index: 4;
+}
+
+.letter {
+    position: absolute;
+    width: 90%;
+    height: 125px;
+    background: #fffafc;
+    left: 5%;
+    bottom: 5px;
+    border-radius: 7px;
+    padding: 20px 12px;
+    font-family: Georgia, serif;
+    color: #a13e61;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: .8s;
+    z-index: 2;
+}
+
+.envelope-area.open .envelope::before {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope-area.open .letter {
+    transform: translateY(-105px);
+    z-index: 5;
+}
+
+.tap {
+    font-size: 13px;
+    color: #a64b6d;
+    margin-top: 12px;
+}
+
+/* Love note */
+.note {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(255,255,255,.55);
+    border-radius: 22px;
+    line-height: 1.7;
+    font-size: 14px;
+    color: #87405b;
+}
+
+.note b {
+    color: #d13d72;
+}
+
+.signature {
+    margin-top: 18px;
+    font-family: Georgia, serif;
+    font-size: 19px;
+    color: #a52e5b;
+}
+
+button {
+    margin-top: 22px;
+    border: none;
+    padding: 13px 25px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ff6f9e, #e94f83);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(210,60,110,.25);
+    transition: .3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.hidden-message {
+    display: none;
+    margin-top: 18px;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    color: #a52e5b;
+}
+
+.show {
+    display: block;
+    animation: appear .7s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating hearts -->
+<div class="heart" style="left:8%; animation-delay:0s;">♡</div>
+<div class="heart" style="left:22%; animation-delay:2s;">♥️</div>
+<div class="heart" style="left:40%; animation-delay:4s;">♡</div>
+<div class="heart" style="left:62%; animation-delay:1s;">♥️</div>
+<div class="heart" style="left:80%; animation-delay:3s;">♡</div>
+<div class="heart" style="left:92%; animation-delay:5s;">♥️</div>
+<img src="anshiii.jpg" alt="Anshiii">
+
+<div class="container">
+
+    <div class="small">A LITTLE SOMETHING FOR</div>
+
+    <h1>Anshiii 💗</h1>
+
+    <div class="subtitle">
+        because you deserve something special...
+    </div>
+
+    <!-- Her photo -->
+    <div class="photo-frame">
+        <img src="anshiii.jpg" alt="Anshiii">
+    </div>
+
+    <!-- Envelope -->
+    <div class="envelope-area" onclick="openLetter(this)">
+        <div class="envelope">
+
+            <div class="letter">
+                <b>To my Anshiii 💗</b><br><br>
+                I just wanted to remind you that you are
+                genuinely one of the most special people
+                in my world.
+            </div>
+
+        </div>
+    </div>
+
+    <div class="tap">
+        ♡ Tap the envelope ♡
+    </div>
+
+    <!-- Main note -->
+    <div class="note">
+
+        Anshiii, I don't know if words can ever explain
+        how special you are to me. You make ordinary
+        moments feel beautiful just by being there.
+        Your smile, your little things, your presence —
+        everything about you makes my world a little
+        happier.  
+
+        <br><br>
+
+        <b>I lubbb youuuu sooooo muchhh 💗</b>
+
+        <br><br>
+
+        And if I could choose one person to keep
+        close to my heart again and again,
+        it would always be you. 🫶🏻
+
+        <div class="signature">
+            — always yours 💗
+        </div>
+
+    </div>
+
+    <button onclick="showMessage()">
+        One more thing... 💌
+    </button>
+
+    <div id="secret" class="hidden-message">
+        You are not just someone I love...
+        <br>
+        you are someone I feel lucky to have. 💗
+        <br><br>
+        I lubbb youuuu, Anshiii! 🫶🏻
+    </div>
+
+</div>
+
+<script>
+
+function openLetter(element) {
+    element.classList.toggle("open");
+}
+
+function showMessage() {
+    document.getElementById("secret").classList.toggle("show");
+}
+
+</script>
+
+</body>
+</html>
+
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>For Anshiii 💗</title><style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #fff0f6, #ffd1e2, #ffeaf2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    color: #843650;
+}
+
+.card {
+    max-width: 500px;
+    width: 100%;
+    padding: 35px 25px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.65);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 50px rgba(170,70,110,.2);
+    text-align: center;
+}
+
+h1 {
+    color: #a83261;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #b45476;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.message {
+    font-size: 17px;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.message p {
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #d43d72;
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 22px;
+    border-radius: 25px;
+    background: #ec6392;
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+</style></head><body><div class="card"><h1>For My Anshiii 💗</h1>
+
+<div class="subtitle">
+    A few words from my heart...
+</div>
+
+<div class="message">
+
+    <p>
+    Anshiii, sometimes I really don't know how to put
+    everything I feel for you into words. There are so
+    many little things about you that make you special
+    to me, and somehow even the smallest moments with
+    you become my favourite memories.
+    </p>
+
+    <p>
+    I love the way your presence can make an ordinary
+    day feel a little more beautiful. I love your smile,
+    your little habits, your cute moments and even those
+    tiny things that you probably don't realise I notice.
+    </p>
+
+    <p>
+    You are someone I want to keep close to my heart.
+    Someone whose happiness genuinely matters to me.
+    And whenever I think about all the beautiful moments
+    we have shared, I just feel lucky that you are a part
+    of my life.
+    </p>
+
+    <p>
+    I don't promise that every day will always be perfect,
+    but I do promise that my feelings for you are real.
+    I want to keep making memories, laughing over silly
+    things, supporting each other and creating our own
+    little world full of happiness.
+    </p>
+
+    <p>
+    So if you ever wonder how special you are to me,
+    just remember this little website. I made it because
+    sometimes a normal "I love you" doesn't feel enough
+    to explain everything that's in my heart.
+    </p>
+
+    <p class="highlight">
+        I lubbb youuuu sooooo muchhh, Anshiii 💗
+    </p>
+
+    <p style="text-align:center;">
+        And no matter how many pages I make,
+        there will never be enough words for you. 🫶🏻
+    </p>
+
+</div>
+
+<a href="index.html" class="back">
+    ← Back to the envelope 💌
+</a>
+
+</div></body>
+</html>
